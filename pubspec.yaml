@@ -1,0 +1,55 @@
+name: mobile_chef
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.4.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  provider: ^6.0.0
+  shared_preferences: ^2.0.10
+  google_fonts: ^6.2.1
+  flutter_tts: ^3.3.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  flutter_launcher_icons: "^0.13.1"
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: "AppIcon"
+  image_path: "assets/image.png"
+  min_sdk_android: 21 
+
+
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/purple-03.jpg
+    - assets/TomatoOnionPast.png
+    - assets/arabicwhites.png
+    - assets/homepage.png
+    - assets/ingredient.png
+    - assets/redpannerpasta.png
+    - assets/recipe.png
+    - assets/szfriedrice.png
+    - assets/image.png
+    - assets/wpp.png
+    - assets/cb.png
+    - assets/pcb.png
+    - assets/acb.png
+    - assets/pp.png
+    - assets/spfriedrice.png
+    - assets/sp.png
+    - assets/mp.png
+    - assets/schezp.png
+    - assets/salad.png
+    - assets/potat.png
+    - assets/iconmeal.png
