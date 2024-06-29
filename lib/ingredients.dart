@@ -14,21 +14,24 @@ class IngredientsScreen extends StatefulWidget {
 }
 
 class _IngredientsScreenState extends State<IngredientsScreen> {
-  final List<Ingredient> selectedIngredients = [];
+  final Set<String> selectedIngredientIds = {};
 
   void _onIngredientSelected(bool selected, Ingredient ingredient) {
     setState(() {
       if (selected) {
-        selectedIngredients.add(ingredient);
+        selectedIngredientIds.add(ingredient.id);
       } else {
-        selectedIngredients.remove(ingredient);
+        selectedIngredientIds.remove(ingredient.id);
       }
     });
   }
 
   void _showRecipes() {
-    List<String> selectedIngredientNames =
-        selectedIngredients.map((i) => i.title).toList();
+    List<String> selectedIngredientNames = availableIngredients
+        .where((ingredient) => selectedIngredientIds.contains(ingredient.id))
+        .map((ingredient) => ingredient.title)
+        .toList();
+
     List<Recipe> recipes = getRecipes(selectedIngredientNames);
 
     if (recipes.isNotEmpty) {
@@ -96,6 +99,7 @@ class _IngredientsScreenState extends State<IngredientsScreen> {
                 children: availableIngredients
                     .map((ingredient) => IngredientGridItem(
                           ingredient: ingredient,
+                          isSelected: selectedIngredientIds.contains(ingredient.id),
                           onSelected: _onIngredientSelected,
                         ))
                     .toList(),
@@ -128,6 +132,8 @@ class _IngredientsScreenState extends State<IngredientsScreen> {
     );
   }
 }
+
+
 
 List<Recipe> getRecipes(List<String> selectedIngredients) {
   List<Recipe> matchedRecipes = allRecipes.where((recipe) {

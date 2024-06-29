@@ -62,7 +62,7 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
             ),
           ),
         ),
-        title: Text("Recipe Screen"),
+        title: Text(widget.recipe.name),
         actions: [
           IconButton(
             icon: Icon(

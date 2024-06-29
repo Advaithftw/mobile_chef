@@ -1,64 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_chef/ingredient.dart';
 
-class IngredientGridItem extends StatefulWidget {
+class IngredientGridItem extends StatelessWidget {
   final Ingredient ingredient;
+  final bool isSelected;
   final Function(bool, Ingredient) onSelected;
 
   const IngredientGridItem({
     Key? key,
     required this.ingredient,
+    required this.isSelected,
     required this.onSelected,
   }) : super(key: key);
-
-  @override
-  _IngredientGridItemState createState() => _IngredientGridItemState();
-}
-
-class _IngredientGridItemState extends State<IngredientGridItem> {
-  bool isSelected = false;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        setState(() {
-          isSelected = !isSelected;
-        });
-        widget.onSelected(isSelected, widget.ingredient);
+        onSelected(!isSelected, ingredient);
       },
       child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: widget.ingredient.gradientColors,
+            colors: ingredient.gradientColors,
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
+          borderRadius: BorderRadius.circular(8.0),
           border: Border.all(
-            color: isSelected ? const Color.fromARGB(255, 0, 0, 0) : Colors.transparent,
+            color: isSelected ? Colors.orange : Colors.grey,
             width: 2.0,
           ),
-          borderRadius: BorderRadius.circular(10.0),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              widget.ingredient.title,
-              style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                    color: Theme.of(context).colorScheme.onSurface,
-                  ),
+        child: Center(
+          child: Text(
+            ingredient.title,
+            style: TextStyle(
+              color: isSelected ? Colors.white : Colors.black,
+              fontWeight: FontWeight.bold,
             ),
-            Checkbox(
-              value: isSelected,
-              onChanged: (bool? value) {
-                setState(() {
-                  isSelected = value ?? false;
-                });
-                widget.onSelected(isSelected, widget.ingredient);
-              },
-            ),
-          ],
+          ),
         ),
       ),
     );
