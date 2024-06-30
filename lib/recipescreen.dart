@@ -78,7 +78,7 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
           Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/ingredient.png'), 
+                image: AssetImage('assets/recipes.png'), 
                 fit: BoxFit.cover,
               ),
             ),
